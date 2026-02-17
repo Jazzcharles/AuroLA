@@ -35,7 +35,7 @@ def get_embed_feature(hidden_states, input_ids, embed_index):
     return embed_features
 
 # 1) Load model + processor (same style as Qwen2.5-Omni)
-model_path = "hf_export/AuroLA-7B"  # or your HF repo id
+model_path = "Jazzcharles/AuroLA-7B"  # or your HF repo id
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.bfloat16 if device == "cuda" else torch.float32

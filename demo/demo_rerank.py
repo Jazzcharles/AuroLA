@@ -60,8 +60,8 @@ def rerank_yes_prob(messages):
 
 
 # 1) Load model + processor
-model_path = "hf_export/AuroLA-rerank-3B"  # or your HF repo id
-# model_path = "hf_export/AuroLA-rerank-7B"  # or your HF repo id
+model_path = "Jazzcharles/AuroLA-rerank-3B"  # or your HF repo id
+# model_path = "Jazzcharles/AuroLA-rerank-7B"  # or your HF repo id
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.bfloat16 if device == "cuda" else torch.float32

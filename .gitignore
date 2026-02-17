@@ -1,0 +1,24 @@
+checkpoints/
+bak/
+# datasets/
+assets/
+__pycache__/
+hf_export/
+visualisation/
+*.pyc
+
+scripts/export_to_hf*
+scripts/*3b.sh
+scripts/*3b_pt.sh
+scripts/rerank_score*
+scripts/finetune_retrieval_soundly.sh
+
+merge_rerank.py
+
+docs/pretrain.md
+docs/hf_model_card_retrieval.md
+docs/hf_model_card_rerank.md
+
+utils/export_to_hf.py
+
+AGENTS.md

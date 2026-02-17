@@ -28,17 +28,11 @@ def process_input(message, device):
     inputs = inputs.to(device)
     return inputs
 
-# Forward + take hidden state at <emb> position
-def get_emb_features(model_inputs, emb_token_ids):
-    out = model(
-        **model_inputs,
-        output_hidden_states=True,
-        return_dict=True,
-        use_audio_in_video=False,
-    )
-    last_hidden = out.hidden_states[-1]                 # [B, L, D]
-    emb_mask = model_inputs["input_ids"].eq(emb_token_ids)
-    return last_hidden[emb_mask]                        # [B, D], one <emb> per sample
+# Extract features at the position before <emb> token
+def get_embed_feature(hidden_states, input_ids, embed_index):
+    embed_indices = torch.argmax((input_ids == embed_index).int(), dim=1)
+    embed_features = hidden_states[torch.arange(len(embed_indices)), embed_indices - 1]
+    return embed_features
 
 # 1) Load model + processor (same style as Qwen2.5-Omni)
 model_path = "hf_export/AuroLA-7B"  # or your HF repo id
@@ -107,9 +101,13 @@ text_messages = [
 audio_inputs = process_input(audio_messages, device)
 text_inputs = process_input(text_messages, device)
 
+# 4) Forward and extract features
 with torch.inference_mode():
-    audio_feat = get_emb_features(audio_inputs, emb_token_ids)
-    text_feat = get_emb_features(text_inputs, emb_token_ids)
+    audio_out = model(**audio_inputs, output_hidden_states=True, return_dict=True, use_audio_in_video=False)
+    audio_feat = get_embed_feature(audio_out.hidden_states[-1], audio_inputs['input_ids'], emb_token_ids)
+    
+    text_out = model(**text_inputs, output_hidden_states=True, return_dict=True, use_audio_in_video=False)
+    text_feat = get_embed_feature(text_out.hidden_states[-1], text_inputs['input_ids'], emb_token_ids)
 
 # 5) Similarity + top-k retrieval
 audio_feat = F.normalize(audio_feat, dim=-1)

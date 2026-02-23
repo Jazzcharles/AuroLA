@@ -18,9 +18,9 @@ This repo contains the official implementation of the following paper:
 
 </div>
 
-<!-- [![Paper](https://img.shields.io/badge/cs.CV-Paper-b31b1b?logo=arxiv&logoColor=red)]()
-[![Project Page](https://img.shields.io/badge/Homepage-Website-green)]()
-[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue)]() -->
+[![Paper](https://img.shields.io/badge/cs.SD-Paper-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2602.18010)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue)](https://huggingface.co/Jazzcharles/AuroLA-7B)
+<!-- [![Project Page](https://img.shields.io/badge/Homepage-Website-green)]() -->
 
 
 ## News <a name="news"></a>
@@ -192,9 +192,17 @@ See [finetune.md](docs/finetune.md)
 ## Acknowledgement
 This codebase is based on [VAST](https://github.com/CASIA-IVA-Lab/VAST), [LamRA](https://github.com/Code-kunkun/LamRA), [WavCaps](https://github.com/XinhaoMei/WavCaps). Thanks for their great work.
 
-<!-- ## Citation
+## Citation
 If you find our work helps, please cite our paper.
 
 ```bibtex
-TODO.
-``` -->
+@misc{xu2026scalingaudiotextretrievalmultimodal,
+      title={Scaling Audio-Text Retrieval with Multimodal Large Language Models}, 
+      author={Jilan Xu and Carl Thomé and Danijela Horak and Weidi Xie and Andrew Zisserman},
+      year={2026},
+      eprint={2602.18010},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2602.18010}, 
+}
+```
